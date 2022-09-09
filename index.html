@@ -13,7 +13,8 @@
 
 		body {
 			/*background: url("./img/bg.jpg") 0 0 no-repeat scroll transparent;background-size:100% 100%;*/
-			background-color: #000000;
+			/*background-color: #000000;*/
+			background: transparent;
 			margin: 0;
 			font-family: Helvetica, sans-serif;
 			;
@@ -44,9 +45,9 @@
 		}
 
 		.element {
-			width: 100px;
+			width: 160px;
 			/* 120 160 */
-			height: 100px;
+			height: 160px;
 			box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.5);
 			border: 1px solid rgba(127, 255, 255, 0.25);
 			text-align: center;
@@ -59,8 +60,8 @@
 		}
 
 		.element img {
-			width: 140px;
-			height: 140px;
+			width: 160px;
+			height: 160px;
 		}
 
 		.element .number {
@@ -165,18 +166,24 @@
 			overflow: hidden;
 			white-space: nowrap;
 		}
+		#holder {
+			/*position: absolute;*/
+			width: 100vw;
+			height: 100vh;
+		}
 	</style>
 	<link rel="stylesheet" href="css/animate.min.css">
 </head>
 
 <body>
 	<script src="js/jquery.min.js"></script>
+	<script src="js/animation.js"></script>
 	<script src="js/three.js"></script>
 	<script src="js/tween.min.js"></script>
 	<script src="js/TrackballControls.js"></script>
 	<script src="js/CSS3DRenderer.js"></script>
-
 	<div id="container"></div>
+	<div id='holder'></div>
 	<audio autoplay="" loop="">
 		<source src="http://www.ytmp3.cn/down/72794.mp3">
 	</audio>
@@ -195,6 +202,73 @@
 	</div>
 
 	<script>
+		$( document ).ready( function() {
+
+			//------------------------------------------------------------------------
+
+			//Settings - params for WarpDrive
+			var settings = {
+
+				width: 480,
+				height: 1000,
+				autoResize: false,
+				autoResizeMinWidth: null,
+				autoResizeMaxWidth: null,
+				autoResizeMinHeight: null,
+				autoResizeMaxHeight: null,
+				addMouseControls: true,
+				addTouchControls: true,
+				hideContextMenu: true,
+				starCount: 6666,
+				starBgCount: 2222,
+				starBgColor: { r:0, g:204, b:255 },
+				starBgColorRangeMin: 20,
+				starBgColorRangeMax: 80,
+				starColor: { r:0, g:204, b:255 },
+				starColorRangeMin: 50,
+				starColorRangeMax: 100,
+				starfieldBackgroundColor: { r:5, g:5, b:14 },
+				starDirection: 1,
+				starSpeed: 20,
+				starSpeedMax: 200,
+				starSpeedAnimationDuration: 2,
+				starFov: 300,
+				starFovMin: 200,
+				starFovAnimationDuration: 2,
+				starRotationPermission: true,
+				starRotationDirection: 1,
+				starRotationSpeed: 0.0,
+				starRotationSpeedMax: 1.0,
+				starRotationAnimationDuration: 2,
+				starWarpLineLength: 2.0,
+				starWarpTunnelDiameter: 100,
+				starFollowMouseSensitivity: 0.025,
+				starFollowMouseXAxis: true,
+				starFollowMouseYAxis: true
+
+			};
+
+			//------------------------------------------------------------------------
+
+			//standalone
+
+			//init
+
+			//var warpdrive = new WarpDrive( document.getElementById( 'holder' ) );
+			var warpdrive = new WarpDrive( document.getElementById( 'holder' ), settings );
+
+			//------------------------------------------------------------------------
+
+			//jQuery
+
+			//init
+
+			//$( '#holder' ).warpDrive();
+			//$( '#holder' ).warpDrive( settings );
+
+			//------------------------------------------------------------------------
+
+		} );
 		var personArray = new Array;
 		var CurPersonNum = 0;
 		// animate
@@ -228,7 +302,7 @@
 		}, 4500);
 
 		// 生成虚拟数据
-		for (var i = 0; i < 199; i++) {
+		for (var i = 0; i < 99; i++) {
 			personArray.push({
 				image: 'img/'+ Math.round(Math.random() * 30) + '.jpg'
 			});
